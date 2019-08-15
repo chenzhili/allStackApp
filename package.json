@@ -1,0 +1,19 @@
+{
+  "name": "allstackapp",
+  "version": "1.0.0",
+  "description": "这个 项目 的 需求 就是 要求 从 前端 到后端 完全自己 构造 一个 项目，要求 简单的 交互需要有",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chenzhili/allStackApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chenzhili/allStackApp/issues"
+  },
+  "homepage": "https://github.com/chenzhili/allStackApp#readme"
+}
