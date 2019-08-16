@@ -1,0 +1,8 @@
+$darkTxt:#ddd;
+$darkBg:#000;
+
+// 主题 暴露
+:export{
+    darkTxt:$darkTxt;
+    darkBg:$darkBg;
+}

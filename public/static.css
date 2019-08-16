@@ -1,0 +1,60 @@
+
+// 这个 文件 用于 统一 配置 css，不能 混淆 clasName
+/* 
+    两种 办法：
+        1、用 :global 
+        2、不想 写 global 就修改 webpack，让 *.css 在 css-loader  中 不起动 css modules
+    ***
+        对于 css的 重命名 混淆 只对 className 有用
+    ****
+*/
+html{
+    height: 100%;
+}
+body{
+    margin:0;
+    font-size:14px;
+    font-family: "Helvetica Neue", Helvetica, STHeiTi, Arial, sans-serif;
+    line-height:1.5;
+    color:#000;
+    background-color:#fff;
+    min-height:100%;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section,summary{
+    display:block;
+}
+audio, canvas, progress, video{
+    display: inline-block;
+}
+a {
+    background:transparent;
+    text-decoration:none;
+    color:#08c;
+}
+p{
+    padding:0;
+    margin:0;
+}
+a:active,a:hover{
+    outline: none;
+}
+img{
+    max-width:100%;
+    border:0;
+    vertical-align: middle;
+}
+
+.left{
+    float:left;
+}
+.right{
+    float:right;
+}
+.clear-fix:after{
+    display:table;
+    clear:both;
+    content:"";
+}
+[hidden]{
+    display: none; 
+}
