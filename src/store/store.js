@@ -1,6 +1,17 @@
-import { createStore } from "redux"
+import { createStore,combineReducers } from "redux"
+ 
+import {testReducer} from "./reducers"
 
-// export default const store = createStore();
+console.log(testReducer);
+export default createStore(combineReducers({testReducer}),{});
+
+
+
+
+
+
+
+
 
 
 // 简单的 实现方法 ，合并 reducer的 实现
@@ -11,7 +22,7 @@ import { createStore } from "redux"
         用 namespace 来 作为 key 的 分层，里面 的 reducer 方法 是 实际  调用 的 reducer 层，因为 到 这一层 已经 不能 对 state 进行 删除
 */
 /* 这里先 测试 store 的 state 变化 让页面 也 跟着 变化，不带路由的 ，再做 带 路由 */
-const combineReducers = reducers => {
+/* const combineReducers = reducers => {
     return (state = {}, action) => {
         return Object.keys(reducers).reduce(
             (nextState, key) => {
@@ -21,4 +32,4 @@ const combineReducers = reducers => {
             {}
         );
     };
-};
+}; */

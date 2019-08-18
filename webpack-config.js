@@ -5,9 +5,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
-    entry: {
-        "index": path.join(__dirname, "src/index.js")
-    },
+    entry: ["react-hot-loader/patch", path.join(__dirname, "src/index.js"),],
+    devtool: "cheap-eval-source-map",
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
         compress: true,
@@ -68,6 +67,16 @@ module.exports = {
             filename: 'index.html',
             template: path.join(__dirname, "public/index.html")
         }),
-        new webpack.HotModuleReplacementPlugin(), //模块 热加载 没有 写完，在 初始 入口文件 还没 配置对应的 代码
-    ]
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin(), /* 
+            这个 对于 react 的 模块热加载，一定要 react-hot-loader 中用到 
+            @hot-loader/react-dom 这个 包，在 webpack 的 resolve 中 进行 配置，dom元素 才会 更新
+            url：https://github.com/gaearon/react-hot-loader#hot-loaderreact-dom 仔细看 对于 @hot-loader/react-dom的描述就可以了
+        */
+    ],
+    resolve: {
+        alias: {
+            'react-dom': '@hot-loader/react-dom'
+        }
+    }
 }

@@ -38,3 +38,34 @@
 "react-router-redux": "5.0.0-alpha.6",// redux 的中间件，在 provider 里可以嵌套 router
 "redux": "^3.7.2" // 提供了 store、dispatch、reducer 
             
+2019-8-18
+    1、解决 react 在 dev 模式下 实现 热替换(hmr)，需要 详细 记录一下
+        1、webpack 中 需要的 配置
+            I、需要 devServer：就是 webpack-dev-server，并且 在 devServer:{hot:true}
+            II、需要 
+                    new webpack.NamedModulesPlugin(), //在 控制台 记录 是哪个 文件 发生了 热替换，这个只是 更清新 不是 必要
+                    new webpack.HotModuleReplacementPlugin(), //热替换 必须的 插件
+            III、在 .babelrc 中 需要 加入
+                    plugin:["react-hot-loader/babel",]
+            IV、对于 react 需要 下载 两个 插件
+                    1）react-hot-loader 这个是 必须的 插件
+                        在 根目录 文件 中 引入:
+                            import { hot } from 'react-hot-loader/root';
+                            hot：是一个 高阶 函数 App = hot(App) 或者 @hot App 这种 装饰器的 写法
+                        ******
+                            到这里，当你 修改 内容 后，控制台 确实 也监听 到了 内容的 变化，但是 页面 的 内容 并没有 更新，这里 个人 引入了 一个插件来 替换 原有  react-dom  就 成功了
+                            
+                            *这一点 特别重要：*******
+                            加入步骤： 插件 ———— @hot-loader/react-dom
+                            1、在 webpack 中 配置
+                                resolve: {
+                                    alias: {
+                                        'react-dom': '@hot-loader/react-dom'
+                                    }
+                                }
+                                对应 解释的 地址： https://github.com/gaearon/react-hot-loader#hot-loaderreact-dom
+                        *****
+2019-8-18
+    1、实现 redux 的 封装 ，如果 可能 加入 react-redux 来 ，测试 页面 是否 会 根据 store 数据 变化而更新
+        
+        
