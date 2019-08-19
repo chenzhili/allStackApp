@@ -12,3 +12,7 @@ npm-debug.log*
 
 #vs code
 .vscode
+
+#yarn.lock
+/yarn.lock
+/yarn-error.log
