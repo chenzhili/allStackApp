@@ -66,6 +66,7 @@
                                 对应 解释的 地址： https://github.com/gaearon/react-hot-loader#hot-loaderreact-dom
                         *****
 2019-8-18
-    1、实现 redux 的 封装 ，如果 可能 加入 react-redux 来 ，测试 页面 是否 会 根据 store 数据 变化而更新
+    1、完成 (react ，react-router(对于 路由 的 加入还没加)) 和 redux ，在 数据 和 试图 之间 进行 交互，并且 加入 中间件 (middleWare)
+        为什么 有 router 时候 需要 去 单独处理，因为 在 router 发生 变化的 时候，shouldComponentUpdate 并没有 监测到 数据 的变化，所以 需要 加入 react-router-redux 将 history 当作 HOC 传入 组件，识别他的 变化
         
         

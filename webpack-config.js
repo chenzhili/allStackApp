@@ -6,7 +6,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
     entry: ["react-hot-loader/patch", path.join(__dirname, "src/index.js"),],
-    devtool: "cheap-eval-source-map",
+    devtool: "cheap-module-eval-source-map",
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
         compress: true,

@@ -1,9 +1,8 @@
 import { createStore,combineReducers } from "redux"
  
-import {testReducer} from "./reducers"
+import reducers from "./reducers"
 
-console.log(testReducer);
-export default createStore(combineReducers({testReducer}),{});
+export default createStore(combineReducers(reducers));
 
 
 
