@@ -12,7 +12,7 @@ import store from "./store/store"
 import { Provider, connect } from "react-redux"
 
 @hot
-@connect((state,props)=>{console.log(state,props);return state.testReducer})
+@connect((state,props)=>{console.log(state,props);return state.a})
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -25,13 +25,13 @@ class App extends React.Component {
         return (
             <div className={styles.test} onClick={()=>{
                 this.props.dispatch({
-                    type:"testReducer",
+                    type:"a/test",
                     payload:{
                         test:2
                     }
                 })
             }}>
-                {this.props.test?this.props.test:this.state.a}
+                {this.props.testData?this.props.testData:this.state.a}
             </div>
         )
     }

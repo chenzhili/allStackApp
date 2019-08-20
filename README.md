@@ -7,7 +7,7 @@
                     react-router：做前端 路由
                     react-redux：做 数据 统一管理
                                 redux的 中间件：react-saga
-                后期 可能 会加入 ts 的 方式 增强 语言的 可控性
+                后期 可能 会加入 ts 的 方式 增强 语言数据类型的 可控性
             ui：antd
             css：用 sass 
             项目搭建：用 webpack
@@ -69,4 +69,12 @@
     1、完成 (react ，react-router(对于 路由 的 加入还没加)) 和 redux ，在 数据 和 试图 之间 进行 交互，并且 加入 中间件 (middleWare)
         为什么 有 router 时候 需要 去 单独处理，因为 在 router 发生 变化的 时候，shouldComponentUpdate 并没有 监测到 数据 的变化，所以 需要 加入 react-router-redux 将 history 当作 HOC 传入 组件，识别他的 变化
         
-        
+2019-8-20
+    1、对于 redux-saga 的 深入理解，就是 对于 其中 原理以及 API 的理解
+        注意点：
+            I、所有的 saga 都是 构造器 函数，但是这里 需要 区分 自定义 执行 或者是 通过 action 触发的；
+            II、这里 在 effects 上 分为 阻塞 和 非阻塞 试 的 ，对于 非阻塞 式 还可以 cancel ，可以 取消 ，并且 取消了的 状态 还能获取到
+        继承 到 redux中 就是 在 applyMiddleware 中 加入 这个 中间件
+        <!-- 
+            简单 实现 对于 models  中 的 effects 中的 方法的 统一 集成，到时候 还需要 做 对于 reducer 和 effects 的 action 的 具体 区分，这里还没完成
+         -->

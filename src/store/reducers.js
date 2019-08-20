@@ -33,12 +33,20 @@
 /* 手动 配置 model 的 所有 文件 */
 import models from "../models/modelsApp"
 
+/** 
+ * 对于 判断 是 effects 还是 reducers 需要 判断
+ * 现在 先 简单 的判断 ，由于 在 dva 中，在 一个 model 中 需要 保留 对应 的 namespace 去 判断是 属于 reducer 的 action还是 中间件的 action
+*/
+const isReducerAction = (model,type)=>{
+    return model["reducers"] instanceof Object && (type in model["reducers"]);
+}
+
 // dva 模式 的  reducer 的 集成 ，对于 effects 没有进行 集成
 const combineModels = (models) => {
     return Object.keys(models).reduce((prev, next) => {
         prev[next] = (state = models[state] ? models[state] : {}, action) => {
-            if (!models[next]["namespace"]) return { ...state };
             const actionType = action.type.split("/");//accountBook/setHeader
+            if (!models[next]["namespace"] || !isReducerAction(models[next],actionType[1])) return {...state};
             switch (actionType[0]) {
                 case models[next]["namespace"]:
                     return models[next]["reducers"][actionType[1]] ? models[next]["reducers"][actionType[1]](state, action) : { ...state };
@@ -49,10 +57,10 @@ const combineModels = (models) => {
         return prev;
     }, {});
 }
-const reducers = combineModels(models);
+export default combineModels(models)
 
 
-function testReducer(state = {}, action) {
+/* function testReducer(state = {}, action) {
     console.log(state, action);
     switch (action.type) {
         case "testReducer":
@@ -70,13 +78,12 @@ function testReducer2(state = {}, action) {
         default:
             return { ...state };
     }
-}
+} */
 
 
-console.log(models);
 
 
-export default {testReducer, testReducer2,...reducers}
+
 
 
 

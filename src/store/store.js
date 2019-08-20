@@ -1,11 +1,19 @@
-import { createStore,combineReducers } from "redux"
- 
+import { createStore, combineReducers, applyMiddleware } from "redux"
+import createSagaMiddleware from 'redux-saga'
+
 import reducers from "./reducers"
+import rootSaga from "./middleWare/saga"
 
-export default createStore(combineReducers(reducers));
+const sagaMiddleware = createSagaMiddleware()
+console.log(reducers);
+const store =  createStore(
+    combineReducers(reducers),
+    applyMiddleware(sagaMiddleware)
+);
+sagaMiddleware.run(rootSaga);
 
 
-
+export default store;
 
 
 
@@ -14,7 +22,7 @@ export default createStore(combineReducers(reducers));
 
 
 // 简单的 实现方法 ，合并 reducer的 实现
-/* 
+/*
     这里 就告诉 了一个 问题，可以 按照 key 值 对 不同的 reducer 进行 区分 state
 
     这里 引用 哈 dva 在 这里 的实现 上，
