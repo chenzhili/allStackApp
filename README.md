@@ -78,3 +78,21 @@
         <!-- 
             简单 实现 对于 models  中 的 effects 中的 方法的 统一 集成，到时候 还需要 做 对于 reducer 和 effects 的 action 的 具体 区分，这里还没完成
          -->
+2019-8-21
+    1、集成 react-router 并且 用上 react-router-dom，同时 目前不需要 用 react-router-redux 去监听 路由 变化 更新组件，自己 内部 已经 实现了；
+        react-router-dom 这个 增强 react-router 对于 dom 上 直接 控制 路由 的 跳转；不需要 下载 react-router
+
+        比对 common.js  和 es6 的 模块化：
+            require(): 这个是 同步 加载 模块；
+            import(): 这个是 异步加载 模块，返回一个 Promise 对象；
+
+
+    2、今天  需要 完成 路由文件的 数据结构 配置文件的 统一性，用统一 方法 返回 对应 生成 对应的 routes，异步 加载 component
+        动态加载路由和异步加载component 需要 结合 webpack , url：https://blog.csdn.net/qq_35484341/article/details/80506297
+
+        <!-- 这里就要 重新 封装 models 的 代码，一部分 为 静态 就初始化 的 models，一部分 为 动态 加载 的 models 文件 -->
+
+        明天 需要 完成 动态 加载 redux 的 reducer 和 middleWare (相当于 effects 和 reducer 进行 动态 加入)
+        1、动态 加载 reducer url：https://blog.csdn.net/qq_27384769/article/details/78689086
+        2、动态加载 saga 通过 const task = sagaMiddleware.run(dynamicSaga) url：https://dvajs.com/guide/source-code-explore.html#start-%E6%96%B9%E6%B3%95
+

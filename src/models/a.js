@@ -5,7 +5,7 @@ export default {
     },
     effects: {
         *test(action,{call,put}){
-            console.log(11111);
+            console.log(action);
             yield put({type:"a/test1",payload:{testData:11111}})
         }
     },

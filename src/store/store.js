@@ -4,13 +4,13 @@ import createSagaMiddleware from 'redux-saga'
 import reducers from "./reducers"
 import rootSaga from "./middleWare/saga"
 
-const sagaMiddleware = createSagaMiddleware()
+const sagaMiddleware = createSagaMiddleware(rootSaga)
 console.log(reducers);
 const store =  createStore(
     combineReducers(reducers),
     applyMiddleware(sagaMiddleware)
 );
-sagaMiddleware.run(rootSaga);
+// sagaMiddleware.run(rootSaga); //这个是 saga 用于 动态 绑定 saga 的方法，这里可以在 路由 发生变化的 接入 新的 saga
 
 
 export default store;

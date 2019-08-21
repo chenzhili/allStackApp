@@ -1,6 +1,10 @@
-import React from "react"
+import React, { Component } from "react"
 import ReactDOM from "react-dom"
 import { hot } from 'react-hot-loader/root';
+import dom from "react-router-dom"
+import { Provider, connect } from "react-redux"
+
+import RouterCom from "./router"
 
 import "../public/static.css"
 import styles from "./index.scss"
@@ -9,9 +13,11 @@ import theme from "../public/theme.scss"
 import Test from "./component/test"
 
 import store from "./store/store"
-import { Provider, connect } from "react-redux"
 
-@hot
+
+console.log(dom);
+
+/* @hot
 @connect((state,props)=>{console.log(state,props);return state.a})
 class App extends React.Component {
     constructor(props) {
@@ -35,6 +41,16 @@ class App extends React.Component {
             </div>
         )
     }
+} */
+@hot
+class App extends Component {
+    render() {
+        return (
+            <Provider store={store}>
+                <RouterCom />
+            </Provider>
+        );
+    }
 }
 
-ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById("root"));
+ReactDOM.render(<App/>, document.getElementById("root"));
