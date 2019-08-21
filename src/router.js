@@ -1,5 +1,9 @@
 import React from "react"
 import { HashRouter as Router, Route, Link, Redirect, Switch, Fade } from "react-router-dom";
+
+
+import routeRenderConfig from "./enum/routeRenderConfig"
+import { mapRoutes } from "./utils/routeCommon"
 /* 
     BrowserRouter 和 HashRouter
     对于 BrowserRouter 在 前端 渲染不在 后端渲染的 时候，在 初始化 页面 直接 加载 http://localhost:8777/third 时候 会找不到 路由，因为 还未加载
@@ -18,6 +22,56 @@ const Third = (props) => {
         <div>third page</div>
     )
 }
+const NoCom = (props) => {
+    return (
+        <div>没找到页面</div>
+    )
+}
+const B = (props) => {
+    return (
+        <div>B 子页面</div>
+    )
+}
+
+/* 这里 配置 对应的 所有 路由 ，由于 由组件 形式 呈现，所以 这里 相当于是一个 树形结构 */
+const configRoutes = [
+    {
+        render: routeRenderConfig.route,
+        path: "/",
+        exact: true,
+        component: Second,
+        // params:"",//路由上不用 : 这种 方式 传参，用 ? 所以不需要 定义这个
+        routes: []
+    },
+    {
+        render: routeRenderConfig.route,
+        path: "/second",
+        component: A,
+        routes: [
+            {
+                render: routeRenderConfig.route,
+                path: "/second/child",
+                component: B
+            },
+            {
+                render: routeRenderConfig.route,
+                path: false,
+                component: NoCom
+            },
+        ]
+    },
+    {
+        render: routeRenderConfig.route,
+        path: "/third",
+        component: Third,
+        routes: []
+    },
+    {
+        render: routeRenderConfig.route,
+        path:false,//path不写，放到 最后的 route 代表如果前面都不匹配就匹配他，用 switch 来做
+        component:NoCom
+    },
+];
 const RouterCom = (props) => {
     return (
 
@@ -28,15 +82,17 @@ const RouterCom = (props) => {
                     <li><Link to="/second">second route</Link></li>
                     <li><Link to="/third">third route</Link></li>
                 </ul>
-                <Switch>
-                    <Route exact path="/" component={Second}></Route>
-                    <Route path="/second" component={A}></Route>
-                    <Route path="/third" component={Third}></Route>
-                    <Redirect to="/" />
-                </Switch>
+                {
+                    // routes 的 渲染 都用 这个
+                    mapRoutes(configRoutes)
+                }
             </div>
         </Router>
     )
 }
 
 export default RouterCom;
+
+
+
+
