@@ -44,8 +44,9 @@ const isReducerAction = (model,type)=>{
 // dva 模式 的  reducer 的 集成 ，对于 effects 没有进行 集成
 const combineModels = (models) => {
     return Object.keys(models).reduce((prev, next) => {
-        prev[next] = (state = models[state] ? models[state] : {}, action) => {
+        prev[next] = (state = models[next]["state"] ? models[next]["state"] : {}, action) => {
             const actionType = action.type.split("/");//accountBook/setHeader
+            console.log(state,action);
             if (!models[next]["namespace"] || !isReducerAction(models[next],actionType[1])) return {...state};
             switch (actionType[0]) {
                 case models[next]["namespace"]:

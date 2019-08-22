@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import ReactDOM from "react-dom"
 import { hot } from 'react-hot-loader/root';
-import dom from "react-router-dom"
+// import dom from "react-router-dom"
 import { Provider, connect } from "react-redux"
 
 import RouterCom from "./router"
@@ -14,8 +14,6 @@ import Test from "./component/test"
 
 import store from "./store/store"
 
-
-console.log(dom);
 
 /* @hot
 @connect((state,props)=>{console.log(state,props);return state.a})

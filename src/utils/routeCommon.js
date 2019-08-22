@@ -3,7 +3,7 @@ import { Route, Redirect, Switch } from "react-router-dom";
 import routeRenderConfig from "../enum/routeRenderConfig"
 
 const RenderRoute = (route) => {
-    console.log(route);
+    // console.log(route);
     switch (route.render) {
         case routeRenderConfig.route:
             let routeProps = {
@@ -24,7 +24,7 @@ const mapRoutes = (routes) => {
     const redirectArr = routes.filter(r => r.render === routeRenderConfig.redirect)
     return (
         [
-            <Switch key="route">
+            <Switch key="switch">
                 {
                     routeArr.map((route, i) => <RenderRoute key={i} {...route} />)
                     /* 这里 不能 route={route} 这种传参，一直 显示为 第一个 route值，没找到原因,看到 对应的 key 一直都没变 */

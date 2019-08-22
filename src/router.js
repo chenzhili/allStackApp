@@ -1,9 +1,10 @@
 import React from "react"
 import { HashRouter as Router, Route, Link, Redirect, Switch, Fade } from "react-router-dom";
-
+import {connect} from "react-redux"
 
 import routeRenderConfig from "./enum/routeRenderConfig"
 import { mapRoutes } from "./utils/routeCommon"
+import { asyncLoadComponent, asyncReducers } from "./utils/initApp"
 /* 
     BrowserRouter 和 HashRouter
     对于 BrowserRouter 在 前端 渲染不在 后端渲染的 时候，在 初始化 页面 直接 加载 http://localhost:8777/third 时候 会找不到 路由，因为 还未加载
@@ -11,10 +12,11 @@ import { mapRoutes } from "./utils/routeCommon"
 */
 
 import A from "./routes/a"
+import styles from "./index.scss"
 
 const Second = (props) => {
     return (
-        <div>second page</div>
+        <div className={styles.testBorder}>second page</div>
     )
 }
 const Third = (props) => {
@@ -46,7 +48,11 @@ const configRoutes = [
     {
         render: routeRenderConfig.route,
         path: "/second",
-        component: A,
+        component: asyncLoadComponent({
+            app: {}, //这里 就需要 store、oldReduers
+            component: () => import("./routes/a"),
+            store: () => import("./store/store"),
+        }),
         routes: [
             {
                 render: routeRenderConfig.route,
@@ -68,13 +74,13 @@ const configRoutes = [
     },
     {
         render: routeRenderConfig.route,
-        path:false,//path不写，放到 最后的 route 代表如果前面都不匹配就匹配他，用 switch 来做
-        component:NoCom
+        path: false,//path不写，放到 最后的 route 代表如果前面都不匹配就匹配他，用 switch 来做
+        component: NoCom
     },
 ];
 const RouterCom = (props) => {
+    console.log(props);
     return (
-
         <Router>
             <div>
                 <ul>
@@ -91,7 +97,7 @@ const RouterCom = (props) => {
     )
 }
 
-export default RouterCom;
+export default connect(state=>state)(RouterCom);
 
 
 

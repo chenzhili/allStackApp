@@ -78,5 +78,24 @@ module.exports = {
         alias: {
             'react-dom': '@hot-loader/react-dom'
         }
+    },
+    optimization: {
+        splitChunks: {
+            /* 这个 代码 切分 然后 异步加载，现在还没 有 实现，因为 代码量 太小了，默认不会 切分 */
+            /* 对于 代码 chunk 能够 独立 分割成 cache 文件 的 条件
+                New chunk can be shared OR modules are from the node_modules folder //同时 有两个以上的 文件引用
+                New chunk would be bigger than 30kb (before min+gz) //大小 一定 超过 30kb
+                Maximum number of parallel requests when loading chunks on demand would be lower or equal to 5 //并行加载的数量 <=5
+                Maximum number of parallel requests at initial page load would be lower or equal to 3   //初始 加载文件 <=3
+            */
+            cacheGroups: {
+                commons: {
+                    name: "commons",
+                    chunks: "all",
+                    minChunks: 2
+                }
+            }
+        }
     }
+
 }

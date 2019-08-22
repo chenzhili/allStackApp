@@ -13,6 +13,7 @@ const generalSagaAction = (models) => {
     return Object.keys(models).reduce((prev, next) => {
         const effects = models[next]["effects"];
         prev = prev.concat(Object.keys(effects).reduce((result, effect) => {
+            console.log(effect);
             result.push((function* () {
                 yield takeEvery(`${models[next]["namespace"]}/${effect}`, function* (action) {
                     if (effects[effect]) {
