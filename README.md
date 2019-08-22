@@ -92,6 +92,8 @@
 
         <!-- 这里就要 重新 封装 models 的 代码，一部分 为 静态 就初始化 的 models，一部分 为 动态 加载 的 models 文件 -->
 
+        当天 完成 进度，只是在 对于 routes 的 统一封装，还没 实现 组件的 动态加载
+        
         明天 需要 完成 动态 加载 redux 的 reducer 和 middleWare (相当于 effects 和 reducer 进行 动态 加入)
         1、动态 加载 reducer url：https://blog.csdn.net/qq_27384769/article/details/78689086
         2、动态加载 saga 通过 const task = sagaMiddleware.run(dynamicSaga) url：https://dvajs.com/guide/source-code-explore.html#start-%E6%96%B9%E6%B3%95
