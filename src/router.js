@@ -1,10 +1,10 @@
 import React from "react"
 import { HashRouter as Router, Route, Link, Redirect, Switch, Fade } from "react-router-dom";
-import {connect} from "react-redux"
+import { connect } from "react-redux"
 
 import routeRenderConfig from "./enum/routeRenderConfig"
 import { mapRoutes } from "./utils/routeCommon"
-import { asyncLoadComponent, asyncReducers } from "./utils/initApp"
+import { asyncLoadComponent } from "./utils/initApp"
 /* 
     BrowserRouter 和 HashRouter
     对于 BrowserRouter 在 前端 渲染不在 后端渲染的 时候，在 初始化 页面 直接 加载 http://localhost:8777/third 时候 会找不到 路由，因为 还未加载
@@ -49,9 +49,9 @@ const configRoutes = [
         render: routeRenderConfig.route,
         path: "/second",
         component: asyncLoadComponent({
-            app: {}, //这里 就需要 store、oldReduers
+            app: () => import("./index"),
             component: () => import("./routes/a"),
-            store: () => import("./store/store"),
+            models:[()=>(import("./models/dynamicModels/example"))]
         }),
         routes: [
             {
@@ -97,7 +97,7 @@ const RouterCom = (props) => {
     )
 }
 
-export default connect(state=>state)(RouterCom);
+export default connect(state => state)(RouterCom);
 
 
 

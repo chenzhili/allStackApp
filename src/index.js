@@ -4,6 +4,8 @@ import { hot } from 'react-hot-loader/root';
 // import dom from "react-router-dom"
 import { Provider, connect } from "react-redux"
 
+import {initApp} from "./utils/initApp"
+
 import RouterCom from "./router"
 
 import "../public/static.css"
@@ -50,5 +52,5 @@ class App extends Component {
         );
     }
 }
-
-ReactDOM.render(<App/>, document.getElementById("root"));
+export default initApp(App,"root");
+// ReactDOM.render(<App/>, document.getElementById("root"));

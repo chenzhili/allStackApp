@@ -25,6 +25,7 @@ const newEffects = function*(){
 sagaMiddleware.run(rootSaga);
 // sagaMiddleware.run(newEffects); //这里的 run 是 push 的意思 不是 替换
 
+export {sagaMiddleware};
 export default store;
 
 
