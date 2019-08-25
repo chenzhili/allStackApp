@@ -97,4 +97,8 @@
         这需要 几天的事件，需要 完成 动态 加载 redux 的 reducer 和 middleWare (相当于 effects 和 reducer 进行 动态 加入)
         1、动态 加载 reducer url：https://blog.csdn.net/qq_27384769/article/details/78689086
         2、动态加载 saga 通过 const task = sagaMiddleware.run(dynamicSaga) url：https://dvajs.com/guide/source-code-explore.html#start-%E6%96%B9%E6%B3%95
+2019-8-25
+    1、完成 redux 以及 middleware 的 动态集成 到 路由
+        reducer：主要通过  store.replaceReducer(reducers);//这里是吧 所有的 reducers 所有的要加入 是替换 原有的 reducers，但是 state 要用 更新过的
+        effects:通过  sagaMiddleware.run(effects);//这个 是 追加的 意思 ，相当于 原有的 基础上 push 进去的；不需要 记住以前的 effects
 
