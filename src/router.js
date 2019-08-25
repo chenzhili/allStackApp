@@ -97,7 +97,7 @@ const RouterCom = (props) => {
     )
 }
 
-export default connect(state => state)(RouterCom);
+export default connect(state => {console.log(state);return state;})(RouterCom);
 
 
 

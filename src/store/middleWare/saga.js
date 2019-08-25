@@ -4,7 +4,7 @@
     但是 用的 最多的 还是 takeEvery ，这个 特点 是 action 触发 就会 执行
 */
 import { all, take, takeEvery, call, put } from "redux-saga/effects"
-import models from "../../models/modelsApp"
+import models from "../../models/staticModels/allModels"
 /**
  * 生成 对于的 sagaAction 
  * 以 对应的 namespace 作为 action 的 头层

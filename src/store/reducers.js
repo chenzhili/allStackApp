@@ -31,7 +31,7 @@
 })() */
 
 /* 手动 配置 model 的 所有 文件 */
-import models from "../models/modelsApp"
+import models from "../models/staticModels/allModels"
 
 /** 
  * 对于 判断 是 effects 还是 reducers 需要 判断
@@ -42,11 +42,11 @@ const isReducerAction = (model,type)=>{
 }
 
 // dva 模式 的  reducer 的 集成 ，对于 effects 没有进行 集成
-const combineModels = (models) => {
+const combineModels = (models) => { 
     return Object.keys(models).reduce((prev, next) => {
         prev[next] = (state = models[next]["state"] ? models[next]["state"] : {}, action) => {
             const actionType = action.type.split("/");//accountBook/setHeader
-            console.log(state,action);
+            console.log(state,action,models);
             if (!models[next]["namespace"] || !isReducerAction(models[next],actionType[1])) return {...state};
             switch (actionType[0]) {
                 case models[next]["namespace"]:
@@ -58,6 +58,7 @@ const combineModels = (models) => {
         return prev;
     }, {});
 }
+export {combineModels}
 export default combineModels(models)
 
 

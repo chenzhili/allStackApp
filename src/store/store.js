@@ -6,7 +6,7 @@ import reducers from "./reducers"
 import rootSaga from "./middleWare/saga"
 
 const sagaMiddleware = createSagaMiddleware()
-console.log(reducers);
+
 const store =  createStore(
     combineReducers(reducers),
     applyMiddleware(sagaMiddleware)
@@ -24,6 +24,8 @@ const newEffects = function*(){
 // sagaMiddleware.run(rootSaga); //这个是 saga 用于 动态 绑定 saga 的方法，这里可以在 路由 发生变化的 接入 新的 saga
 sagaMiddleware.run(rootSaga);
 // sagaMiddleware.run(newEffects); //这里的 run 是 push 的意思 不是 替换
+console.log(reducers);
+console.log(store.getState());
 
 export {sagaMiddleware};
 export default store;

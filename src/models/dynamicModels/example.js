@@ -10,7 +10,8 @@ export default {
     },
     reducers: {
         test1(state,action){
-            
+            console.log("dynamic的test1",state,action);
+            return {...state}
         }
     }
 }
