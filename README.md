@@ -102,3 +102,11 @@
         reducer：主要通过  store.replaceReducer(reducers);//这里是吧 所有的 reducers 所有的要加入 是替换 原有的 reducers，但是 state 要用 更新过的
         effects:通过  sagaMiddleware.run(effects);//这个 是 追加的 意思 ，相当于 原有的 基础上 push 进去的；不需要 记住以前的 effects
 
+2019-9-7
+    完善 webpack 的配置，优化 对应模块
+    参考：https://juejin.im/post/5cfe4b13f265da1bb13f26a8#heading-20
+    1、mini-css-extract-plugin 单独 打包css，这个好处是可以 让 bundle 和 css  一起并行 加载
+    2、对于 webpack 进行 环境不同的 分包处理 webpack-merge
+    
+
+

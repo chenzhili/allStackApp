@@ -4,8 +4,10 @@
   "description": "这个 项目 的 需求 就是 要求 从 前端 到后端 完全自己 构造 一个 项目，要求 简单的 交互需要有",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config webpack-config.js",
-    "build": "webpack --config webpack-config.js"
+    "start": "webpack-dev-server --config ./webpack-config/webpack.dev.config.js --color --progress",
+    "dev": "webpack --config ./webpack-config/webpack.dev.config.js --color --progress",
+    "build": "webpack --config ./webpack-config/webpack.prod.config.js --color --progress",
+    "testBuild": "webpack --config webpack-config.js"
   },
   "repository": {
     "type": "git",
@@ -28,14 +30,17 @@
     "css-loader": "^3.2.0",
     "file-loader": "^4.2.0",
     "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.12.0",
+    "postcss-loader": "^3.0.0",
     "react-hot-loader": "^4.12.11",
     "sass-loader": "^7.2.0",
     "style-loader": "^1.0.0",
     "url-loader": "^2.1.0",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.6",
-    "webpack-dev-server": "^3.8.0"
+    "webpack-dev-server": "^3.8.0",
+    "webpack-merge": "^4.2.2"
   },
   "dependencies": {
     "@hot-loader/react-dom": "^16.9.0",

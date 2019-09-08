@@ -1,12 +1,23 @@
 {
     "presets": [
         "@babel/preset-react",
-        "@babel/preset-env"
+        [
+            "@babel/preset-env",
+            {
+                "useBuiltIns": "entry", //动态加载 需要的模块
+                "corejs": "3",
+            }
+        ]
     ],
     "plugins": [
         "react-hot-loader/babel",
         "@babel/plugin-transform-runtime", //加入一些 Pollyfill
-        ["@babel/plugin-proposal-decorators", { "legacy": true }], //这个 插件 是 对于 装饰器 语法 进行兼容，并且这个是适合 babel>7 的
+        [
+            "@babel/plugin-proposal-decorators",
+            {
+                "legacy": true
+            }
+        ], //这个 插件 是 对于 装饰器 语法 进行兼容，并且这个是适合 babel>7 的
     ],
     /* "env": {
         "development": {
