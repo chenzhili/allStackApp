@@ -1,5 +1,5 @@
 
-// 这个 文件 用于 统一 配置 css，不能 混淆 clasName
+/* 这个 文件 用于 统一 配置 css，不能 混淆 clasName */
 /* 
     两种 办法：
         1、用 :global 
@@ -43,14 +43,13 @@ img{
     border:0;
     vertical-align: middle;
 }
-
-.left{
-    float:left;
+:global .left{
+        float:left;
 }
-.right{
+:global .right{
     float:right;
 }
-.clear-fix:after{
+:global .clear-fix:after{
     display:table;
     clear:both;
     content:"";

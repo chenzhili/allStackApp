@@ -18,6 +18,13 @@
                 "legacy": true
             }
         ], //这个 插件 是 对于 装饰器 语法 进行兼容，并且这个是适合 babel>7 的
+        [
+            "import",
+            {
+                "libraryName": "antd",
+                "style": "css", // or 'css'
+            }
+        ]
     ],
     /* "env": {
         "development": {

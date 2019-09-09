@@ -1,6 +1,7 @@
 import React from "react"
 import { HashRouter as Router, Route, Link, Redirect, Switch, Fade } from "react-router-dom";
 import { connect } from "react-redux"
+import {Button} from "antd"
 
 import routeRenderConfig from "./enum/routeRenderConfig"
 import { mapRoutes } from "./utils/routeCommon"
@@ -16,7 +17,7 @@ import styles from "./index.scss"
 
 const Second = (props) => {
     return (
-        <div className={styles.testBorder}>second page</div>
+        <div className={styles.testBorder}>second page<Button type="primary">aaaa</Button></div>
     )
 }
 const Third = (props) => {

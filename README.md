@@ -107,6 +107,18 @@
     参考：https://juejin.im/post/5cfe4b13f265da1bb13f26a8#heading-20
     1、mini-css-extract-plugin 单独 打包css，这个好处是可以 让 bundle 和 css  一起并行 加载
     2、对于 webpack 进行 环境不同的 分包处理 webpack-merge
+
+2019-9-9
+    1、给webpack 配置 添加 css-tree-shaking 以及 压缩 对应的 代码，并且测试 在有 外部 css 时候，会不会不会 引用进来
+        用到的插件
+        optimize-css-assets-webpack-plugin //压缩 单独的 css文件
+        glob-all //可以 同时 查找多个 路径
+        purgecss-webpack-plugin //主要的 tree-shaking
+
+        安装 antd 做 测试 ，这里 需要 用到  babel-plugin-import 给 antd 做 按需加载,这里要注意 对于 antd 在 .babelrc 中的 配置 "style": "css",一定要写成 css ，这样 让他 加载 css 文件  如果为 true，默认加载 less；并且不能对 antd的 style 进行 class 的 混淆，就是不采用 css module模式
+
+        并没有把 antd 加入白名单，在 css-tree-shaking里，需要 在看看这个插件
+
     
 
 

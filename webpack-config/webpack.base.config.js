@@ -13,6 +13,9 @@ module.exports = {
         // 输出目录
         path: path.resolve(__dirname, "../dist")
     },
+    resolve:{
+        extensions: ['.js', '.jsx'],//在 不写 jsx，js 后缀 ，在 import 中时 也能识别
+    },
     module: {
         rules: [
             {
@@ -24,6 +27,7 @@ module.exports = {
             },
             {
                 test: /\.scss|css$/i,
+                exclude: /node_modules/,
                 use: [
                     MiniCssExtractPlugin.loader,//简单版本
                     {
@@ -37,6 +41,15 @@ module.exports = {
 
                     },
                     // "postcss-loader",
+                    "sass-loader"
+                ]
+            },
+            {
+                test: /\.css$/i,
+                exclude: /(src|public)/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    "css-loader",
                     "sass-loader"
                 ]
             },
