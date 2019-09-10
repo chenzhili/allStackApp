@@ -21,9 +21,10 @@ module.exports = {
             {
                 test: /\.js|jsx$/i,
                 exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                }
+                use: [
+                    // "happypack/loader?id=happyBabel"
+                    'babel-loader'
+                ]
             },
             {
                 test: /\.scss|css$/i,
