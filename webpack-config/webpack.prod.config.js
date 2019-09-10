@@ -31,12 +31,11 @@ module.exports = merge(commonConfig, {
     plugins: [
         /* css-tree-shaking */
         new PurgecssPlugin({
+            only: ['main'], //仅对于 这里包含的 css 文件 进行 tree-shaking
             paths: glob.sync([
                 // 要做 CSS Tree Shaking 的路径文件
                 path.resolve(__dirname, '..', 'public/*.*'),
                 path.resolve(__dirname, '..', 'src/**/*.*'),
-
-                path.resolve(__dirname,"..","node_modules/antd/**/*.css")
             ]),
         }),
         /* css单独文件的 压缩 */

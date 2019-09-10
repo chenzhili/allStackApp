@@ -117,7 +117,7 @@
 
         安装 antd 做 测试 ，这里 需要 用到  babel-plugin-import 给 antd 做 按需加载,这里要注意 对于 antd 在 .babelrc 中的 配置 "style": "css",一定要写成 css ，这样 让他 加载 css 文件  如果为 true，默认加载 less；并且不能对 antd的 style 进行 class 的 混淆，就是不采用 css module模式
 
-        并没有把 antd 加入白名单，在 css-tree-shaking里，需要 在看看这个插件
+        并没有把 antd 加入白名单，在 css-tree-shaking里，需要 在看看这个插件,最后实现的 时候不实用 whiteList 而是采用 only 这个 option 对于 引入库的 css 不进行 tree-shaking
 
     
 
