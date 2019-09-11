@@ -16,3 +16,6 @@ npm-debug.log*
 #yarn.lock
 /yarn.lock
 /yarn-error.log
+
+#dll公共模块的 生成
+/dll

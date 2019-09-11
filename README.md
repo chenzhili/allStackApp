@@ -118,6 +118,11 @@
         安装 antd 做 测试 ，这里 需要 用到  babel-plugin-import 给 antd 做 按需加载,这里要注意 对于 antd 在 .babelrc 中的 配置 "style": "css",一定要写成 css ，这样 让他 加载 css 文件  如果为 true，默认加载 less；并且不能对 antd的 style 进行 class 的 混淆，就是不采用 css module模式
 
         并没有把 antd 加入白名单，在 css-tree-shaking里，需要 在看看这个插件,最后实现的 时候不实用 whiteList 而是采用 only 这个 option 对于 引入库的 css 不进行 tree-shaking
+2019-9-11
+    1、用 dll 的 两个插件 实现 对于 公共不变库 的 提取，一次打包编译；
+    2、添加 cross-env 来 兼容 多操作系统 对于 设置 当前 打包 环境为 pro 还是 dev
+    3、在 dev 环境下 不加入 dll 文件，所以需要 动态 在 prod 上 动态加载 dll，需要 一个 插件 add-asset-html-webpack-plugin
+    4、由于 在 react 的 测试 环境下用了 热替换 'react-dom': '@hot-loader/react-dom'，所以 不能将 dll 放到 dev 中，这样影响到 TypeError: Cannot set property 'getCurrentStack' of undefined 就是 react-dom 中的 方法 找不到；目前没找到解决办法，所以 dll 先不运用到 dev 环境下
 
     
 

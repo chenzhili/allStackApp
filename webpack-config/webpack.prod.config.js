@@ -4,7 +4,8 @@ const merge = require('webpack-merge')
 const commonConfig = require('./webpack.base.config.js')
 const PurgecssPlugin = require('purgecss-webpack-plugin')
 const glob = require("glob-all");
-var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 
 module.exports = merge(commonConfig, {
     mode: "production",
@@ -38,7 +39,15 @@ module.exports = merge(commonConfig, {
                 path.resolve(__dirname, '..', 'src/**/*.*'),
             ]),
         }),
+        /* 提取 dll 中的公共库 动态加入 html 中，并且会 动态将 dll 中的js文件 拷贝一份到 dist文件 下 */
+        new AddAssetHtmlPlugin({
+            filepath: path.resolve(__dirname, "..", "dll/dll_main.js"),
+        }),
+        /* 引入公共库 */
+        new webpack.DllReferencePlugin({
+            manifest: require(path.resolve(__dirname, "../dll/main-manifest.json"))
+        }),
         /* css单独文件的 压缩 */
-        // new OptimizeCssAssetsPlugin(),
+        new OptimizeCssAssetsPlugin(),
     ],
 });

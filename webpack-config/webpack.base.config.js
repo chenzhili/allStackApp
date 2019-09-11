@@ -3,9 +3,12 @@
  */
 
 const path = require("path");
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+const NODE_ENV = process.env.NODE_ENV;
 
 module.exports = {
     entry: ["./src/index.js"],
@@ -13,7 +16,7 @@ module.exports = {
         // 输出目录
         path: path.resolve(__dirname, "../dist")
     },
-    resolve:{
+    resolve: {
         extensions: ['.js', '.jsx'],//在 不写 jsx，js 后缀 ，在 import 中时 也能识别
     },
     module: {
@@ -82,12 +85,14 @@ module.exports = {
         ]
     },
     plugins: [
-        new CleanWebpackPlugin(),
+        new CleanWebpackPlugin({
+            cleanOnceBeforeBuildPatterns: ['**/*', '!dll/**'],//这里的 !dll/** 把 dll 文件夹下的所有文件都不删除，目前把 dll 单独提出来了没放到 dist 下，所以 用不到
+        }),
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: path.join(__dirname, "../public/index.html"),
             minify: {
-                collapseWhitespace: true // 去除空白
+                collapseWhitespace: NODE_ENV === "production" ? true : false // 去除空白
             }
         }),
         new MiniCssExtractPlugin({
@@ -97,5 +102,5 @@ module.exports = {
             chunkFilename: '[id].css',
         }),
     ],
-    performance:false
+    performance: false
 }
